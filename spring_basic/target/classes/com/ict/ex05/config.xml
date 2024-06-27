@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!--
+
+<bean id="mp1" class="com.ict.ex05.Myprocess" /> 
+<bean id="mp2" class="com.ict.ex05.Myprocess" >
+ <constructor-arg name="name" value="111" />
+ <constructor-arg name="age" value="222" />
+</bean>
+<bean id="mp3" class="com.ict.ex05.Myprocess" >
+ <property name="name" value="333" />
+ <property name="age" value="444" />
+</bean>
+
+
+	 어노테이션 지정방법
+	 
+	 1. namespace -> add context
+	 2. <context: annotation-config >
+	 3.  <context:component-=scan base-package="annotation package" /
+	 4. class => annotation
+	 
+	 일반적인 클래스를 객체로 만들때 사용하는 어노ㅌㅔ이션
+@Component 가장 상위 클래스
+@Service 비지니스 로직을 처리하는 클래스 (MVC 패턴에서 서비스에 해당하는 클래스에 붙여준다)
+@Controller: 컨트롤러에 해당하는 클래스 사용 (MVC 패턴에서 컨트롤러에 해당하는 클래스에 붙여준다)
+**********ID 부여를 하지 않으면 해당클래스의 이름을 사용한다( 단, 첫글자는 소문자가 된다 
+	 
+ -->
+ 
+  <context:annotation-config />
+  <context:component-scan base-package="com.ict.ex05" />
+  
+</beans>

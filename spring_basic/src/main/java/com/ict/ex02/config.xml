@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 객체생성 -->
+<bean id="oracledao" class="com.ict.ex02.OracleDAO" />
+<bean id="mariadao" class="com.ict.ex02.MariaDBDAO" />
+
+<bean id="service" class="com.ict.ex02.Service" >
+<!-- 생성자 이용 
+<constructor-arg ref="oracledao" />-->
+
+<!-- setter 이용방법  (service 가 갖고있는 변수 dao )-->
+<property name="dao" ref="mariadao" />
+</bean>
+</beans>

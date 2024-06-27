@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 오라클 접속 정보입력 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="c##bomv" />
+		<property name="password" value="1111" />
+	</bean>
+	
+	<!-- 마이바티스:config mapper 위치 
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations"
+			value="classpath*:com/ict/edu4/service/members_mapper.xml" />
+	</bean>
+-->
+	<!-- mybatis : sqlSessionTemplate 실제 실행하는 클래스 
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+-->
+	<!-- DAO 에 있는 이름과 프로펄티 이름이 같아야한다 그래야 오토와이어 할수있다 
+	<bean id="dao" class="com.ict.edu4.service.DAO">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="c##bomv" />
+		<property name="password" value="1111" />
+	</bean>
+-->
+	<!-- 첫 번째 sqlSessionFactory 빈 -->
+
+	<bean id="sqlSessionFactory1"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations"
+			value="classpath*:com/ict/edu4/service/members_mapper.xml" />
+	</bean>
+	
+	<!-- 두 번째 sqlSessionFactory 빈 -->
+	<bean id="sqlSessionFactory2"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations"
+			value="classpath*:com/ict/guestbook/service/guestbook_mapper.xml" />
+	</bean>
+	
+	
+	<!-- 첫 번째 sqlSessionTemplate 빈 -->
+	<bean id="sqlSessionTemplate1" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory1" />
+	</bean>
+	
+	<!-- 두 번째 sqlSessionTemplate 빈 -->
+	<bean id="sqlSessionTemplate2" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory2" />
+	</bean>
+
+	<!-- 첫 번째 DAO 빈 -->
+	<bean id="dao1" class="com.ict.edu4.service.DAO">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate1" />
+	</bean>
+	
+	<!-- 두 번째 DAO 빈 -->
+	<bean id="dao2" class="com.ict.guestbook.service.Guest_DAO">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate2" />
+	</bean>
+
+</beans>
